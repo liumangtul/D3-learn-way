@@ -1,0 +1,19 @@
+{
+  "name": "d3",
+  "version": "1.0.0",
+  "description": "D3.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://promiseid@126.com:wangyan1987@@github.com/liumangtul/D3-learn-way.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liumangtul/D3-learn-way/issues"
+  },
+  "homepage": "https://github.com/liumangtul/D3-learn-way#readme"
+}
