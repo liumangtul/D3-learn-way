@@ -1,3 +1,10 @@
+//http://www.kancloud.cn/wizardforcel/d3-api-ref/101211
+//https://github.com/tianxuzhang/d3.v4-API-Translation
+//https://github.com/tianxuzhang/d3.v4-API-Translation
+//https://mohansun-canvas.herokuapp.com/content/training/
+//http://www.kancloud.cn/wizardforcel/d3-api-ref/101210
+//https://d3js.org/
+//http://127.0.0.1:64492/test/test.html
 var margin = {top: 20, right: 120, bottom: 20, left:100},
     width = 950 - margin.right - margin.left,
     height = 800 - margin.top - margin.bottom;
@@ -5,7 +12,7 @@ var margin = {top: 20, right: 120, bottom: 20, left:100},
 var i = 0,
     duration = 750,
     root;
-
+console.log()
 var tree = d3.layout.tree()
     .size([height, width]);
 
@@ -86,7 +93,8 @@ function update(source) {
 
   nodeUpdate.select("circle")
       .attr("r", 10)
-      .style("fill", function(d) { return d._children ? "#ccff99" : "#fff"; });
+      .style("fill", function(d) { return d._children ? "#ccff99" : "#fff"; })
+    .style('stroke',function(d){return d._children?"blue":"red"})
 
   nodeUpdate.select("text")
       .style("fill-opacity", 1);
