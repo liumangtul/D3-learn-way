@@ -8,6 +8,7 @@ var treeData = [
 				"children": [
 					{
 						"name": "通州区",
+                        'type':1,
 						"parent": "Architect",
 						"_children": [
 							{
@@ -19,6 +20,7 @@ var treeData = [
 					},
 					{
 						"name": "朝阳区",
+                        type:2,
 						"_children": [
 							{
 								"name":   "管庄",
@@ -44,6 +46,7 @@ var treeData = [
 					},
 					{
 						"name": "海淀区",
+                        type:1,
 						"_children": [
 							{
 								"name":   "海淀黄庄",

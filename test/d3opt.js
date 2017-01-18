@@ -57,8 +57,8 @@ function update(source) {
       .style("fill", function(d) { return d._children ? "#ccff99" : "#fff"; });
 
   nodeEnter.append("text")
-      .attr("x", function(d) { return d.children || d._children ? -13 : 13; })
-      .attr("dy", ".35em")
+      .attr("x", function(d) { return d.children || d._children ? 15 : 20; })
+      .attr("dy", function(d) { return d.children || d._children ? "2.35em" : '.4em'; })
       .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
       .text(function(d) { return d.name; })
       .style("fill-opacity", 1e-6)
@@ -93,8 +93,8 @@ function update(source) {
 
   nodeUpdate.select("circle")
       .attr("r", 10)
-      .style("fill", function(d) { return d._children ? "#ccff99" : "#fff"; })
-    .style('stroke',function(d){return d._children?"blue":"red"})
+      .style("fill", function(d) { return d._children ? "#ccff99" : "#ff0"; })
+      .style('stroke',function(d){return d._children?"#ccffcc":"#f40"})
 
   nodeUpdate.select("text")
       .style("fill-opacity", 1);
@@ -113,15 +113,35 @@ function update(source) {
 
   // Update the links…
   var link = svg.selectAll("path.link")
-      .data(links, function(d) { return d.target.id; });
-
+      .data(links, function(d) { return d.target.id; })
   // Enter any new links at the parent's previous position.
   link.enter().insert("path", "g")
       .attr("class", "link")
       .attr("d", function(d) {
         var o = {x: source.x0, y: source.y0};
         return diagonal({source: o, target: o});
-      });
+      })
+      .style('stroke',function(d,key){
+            console.log(d.target)
+            if(d.target.type==1){
+                return 'red';
+            }else if(d.target.type==2){
+                return 'pink'
+            }else{
+                return 'green'
+            }
+      })
+      .style('stroke-dasharray',function(d,key){
+            if(d.target.type==1){
+                return '0';
+            }else if(d.target.type==2){
+                return '20,5,5,5'
+            }else{
+                return '20,5,5,5,5,10'
+            }
+            return '2,2,2'
+      })
+
 
   // Transition links to their new position.
   link.transition()
