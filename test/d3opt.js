@@ -17,7 +17,7 @@ var tree = d3.layout.tree()
     .size([height, width]);
 
 var diagonal = d3.svg.diagonal()
-    .projection(function(d) { return [d.y, d.x]; });
+    .projection(function(d) { return [d.x, d.y]; });
 
 var svg = d3.select("#tree").append("svg")
     .attr("width", width + margin.right + margin.left)
@@ -26,8 +26,8 @@ var svg = d3.select("#tree").append("svg")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 root = treeData[0];
-root.x0 = height / 2;
-root.y0 = 0;
+root.x0 = width/2;
+root.y0 = 0 ;
 
 update(root);
 
@@ -49,7 +49,7 @@ function update(source) {
   // Enter any new nodes at the parent's previous position.
   var nodeEnter = node.enter().append("g")
       .attr("class", "node")
-      .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
+      .attr("transform", function(d) { return "translate(" + source.x0 + "," + source.y0 + ")"; })
       .on("click", click);
 
   nodeEnter.append("circle")
@@ -57,9 +57,9 @@ function update(source) {
       .style("fill", function(d) { return d._children ? "#ccff99" : "#fff"; });
 
   nodeEnter.append("text")
-      .attr("x", function(d) { return d.children || d._children ? 15 : 20; })
-      .attr("dy", function(d) { return d.children || d._children ? "2.35em" : '.4em'; })
-      .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+      .attr("x", function(d) { return d.children || d._children ? 20 : 0; })
+      .attr("dy", function(d) { return d.children || d._children ? ".3em" : '2.35em'; })
+      .attr("text-anchor", function(d) { return d.children || d._children ? "start" : "middle"; })
       .text(function(d) { return d.name; })
       .style("fill-opacity", 1e-6)
      .attr("class", function(d) {
@@ -89,7 +89,7 @@ function update(source) {
   // Transition nodes to their new position.
   var nodeUpdate = node.transition()
       .duration(duration)
-      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
   nodeUpdate.select("circle")
       .attr("r", 10)
@@ -102,7 +102,7 @@ function update(source) {
   // Transition exiting nodes to the parent's new position.
   var nodeExit = node.exit().transition()
       .duration(duration)
-      .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
+      .attr("transform", function(d) { return "translate(" + source.x + "," + source.y + ")"; })
       .remove();
 
   nodeExit.select("circle")
