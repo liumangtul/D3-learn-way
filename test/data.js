@@ -27,7 +27,7 @@ var treeData = [
 								"_children":[
 									{
 										"name":'神奇环岛',
-										"url": "https://www.youtube.com/v/17dr2GMvgd8",
+										"url": "https://www.youtube.com/v/17dr2GMvgd8"
 									}
 								]
 							},

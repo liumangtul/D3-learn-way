@@ -3,18 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>D3 test</title>
-    <script src="/d3/d3.js"></script>
 </head>
     <body>
         <div id="d3"></div>
     </body>
+    <script src="./data.js"></script>
+    <!--[if lte IE 8]><script src="./r2d3.js" charset="utf-8"></script><![endif]-->
+    <!--[if gte IE 9]><!-->
+    <script src="./r2d3.js"></script>
+    <!--<![endif]-->
     <script>
-        d3.select('#d3')
-            .data([11,22,33])
-            .enter()
-            .append('div')
-            .text(function(d){return d;})
-            .classed('bar',true)
-            .style('width',function(d,i){return d+'px'})
+        console.log(d3)
+        //创建一个树结构数据
+        var tree=d3.layout.tree();
+        var roots=treeData[0];
+        var nodes=tree.nodes(roots);
+        console.log(nodes)
+        /*
+            nodes[i]={
+                children->子级
+                depth->深度|层级
+                parent->父级
+                x->
+                y->
+            }
+        */
+
+        //创建画布
+        var svg=d3.select('#d3').append('svg')
+            .attr('width',800)
+            .attr('height',600)
+            .append('g');
+
+        //返回数组 包含{source 和 target}
+        var links=tree.links(nodes);
+
+        var node=svg.selectAll('g.node')
+            .data(nodes)
+
+        var nodeEnter=node.enter().append('g')
+            .attr('class','node')
+            .attr('transform',function(d){
+                return 'translate('+d.x*200+','+d.y*100+')';
+            })
+
+        nodeEnter.append('circle')
+            .attr('r',  10)
+            .style('fill',function(d){
+                return '#ccc';
+            })
     </script>
 </html>
