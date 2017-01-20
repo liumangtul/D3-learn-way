@@ -62,7 +62,7 @@ function update(source) {
       .attr("text-anchor", function(d) { return d.children || d._children ? "start" : "middle"; })
       .text(function(d) { return d.name; })
       .style("fill-opacity", 1e-6)
-     .attr("class", function(d) {
+      .attr("class", function(d) {
               if (d.url != null) { return 'hyper'; }
          })
           .on("click", function (d) {
